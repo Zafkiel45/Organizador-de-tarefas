@@ -1,0 +1,124 @@
+#container {
+  background-color: #353535;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 800px;
+  margin: 5% auto;
+  border-radius: 1.25em;
+  padding-bottom: 1rem;
+  display: grid;
+  grid-template-areas: "input sidebar" "box1 sidebar";
+  grid-template-columns: 700px 100px;
+  grid-template-rows: 100px 500px;
+  place-items: center;
+  justify-content: center;
+}
+#container #sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+  align-items: center;
+  padding: 2rem;
+  width: 100px;
+  background-color: #2a2a2a;
+  grid-area: sidebar;
+  position: relative;
+  top: 8px;
+  border-top-right-radius: 1.25em;
+  border-bottom-right-radius: 1.25em;
+  border-left: 1px solid rgb(62, 62, 62);
+}
+#container #sidebar button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  transition: 0.7s;
+  border-radius: 5px;
+}
+#container #sidebar button:active {
+  position: relative;
+  top: 2px;
+}
+#container #sidebar button:hover {
+  transform: scale(1.1);
+}
+#container #sidebar #button_program, #container #sidebar #button_program_visible {
+  background-color: rgb(229, 142, 229);
+}
+#container #sidebar #button_rotina, #container #sidebar #button_rotina_visible {
+  background-color: orange;
+}
+#container #container_task, #container #container_task_2 {
+  width: 400px;
+  height: 100%;
+  background-color: rgb(132, 80, 80);
+  grid-area: box1;
+  background-color: #474747;
+  border-radius: 10px;
+  z-index: 0;
+}
+#container #container_task_2 {
+  z-index: 1;
+}
+#container #list_task, #container #list_task_2 {
+  color: white;
+  list-style: none;
+  padding: 1.5em;
+}
+#container #list_task li, #container #list_task_2 li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid gray;
+  padding: 1em 0;
+}
+#container #list_task li .check, #container #list_task_2 li .check {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: none;
+  background-color: rgb(89, 236, 89);
+}
+#container #input_container {
+  grid-area: input;
+  display: flex;
+  gap: 1.25em;
+  align-items: center;
+  border-bottom: 1px solid gray;
+  padding: 1em 0px;
+  width: 100%;
+  justify-content: center;
+}
+#container #input_container #button_remove {
+  padding: 1em 3em;
+  border-radius: 1.25em;
+  background-color: rgb(242, 127, 127);
+  border: none;
+  outline: none;
+}
+#container #input_container #button_remove:active {
+  position: relative;
+  top: 2px;
+}
+#container #input_container #button_remove:hover {
+  background-color: rgb(243, 94, 94);
+}
+#container #input_container #task {
+  padding: 1em 3em 1em 1em;
+  border-radius: 0.56em;
+  border: none;
+  outline: none;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #242424;
+}/*# sourceMappingURL=import.css.map */

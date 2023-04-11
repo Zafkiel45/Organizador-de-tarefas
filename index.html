@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="organize suas tarefas totalmente online e gratuitamente aqui.">
+    <meta name="keywords" content="utilidade">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>organizador de taerefas</title>
+    <link rel="stylesheet" href="SASS/import.css">
+</head>
+<body>
+    <div id="container">
+        <!-- Inputs -->
+        <div id="input_container"> 
+            <div id="container_input_task">
+                <input type="text" name="task" id="task" placeholder="Digite uma tarefa">
+            </div>
+            <div id="container_remove_task">
+                <button id="button_remove">
+                    <img src="Assets/SVG/lixeira.svg" alt="svg de uma lixeira">
+                </button>
+            </div>
+        </div>
+        <!-- fim dos inputs -->
+        <div id="container_task">
+            <ul id="list_task">
+                <li>eita<button class="check">OK</button></li>
+            </ul>
+        </div>
+        <div id="container_task_2">
+            <ul id="list_task_2">
+                <li>teste<button class="check">OK</button></li>
+            </ul>
+        </div>
+        <div id="sidebar">
+            <div>
+                <button id="button_program">
+                    <img src="Assets/SVG/pc-display-horizontal.svg" alt="" class="svg_sidebar">
+                </button>
+            </div>
+            <div>
+                <button id="button_rotina">
+                    <img src="Assets/SVG/calendar-day-fill.svg" alt="" class="svg_sidebar">
+                </button>
+            </div>
+            <div>
+                <button id="button_program_visible">
+                    <img src="Assets/SVG/eye-fill.svg" alt="" class="svg_sidebar">
+                </button>
+            </div>
+            <div>
+                <button id="button_rotina_visible">
+                    <img src="Assets/SVG/eye-fill.svg" alt="" class="svg_sidebar">
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="JavaScript/script.js"></script>
+</html>
