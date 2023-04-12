@@ -9,6 +9,12 @@ const button_rotina_visible  = document.querySelector('#button_rotina_visible');
 const container_task  = document.querySelector('#container_task');
 const container_task2 = document.querySelector('#container_task_2');
 
+const task    = document.querySelector('#list_task');
+const task_2  = document.querySelector('#list_task_2');
+const button_program = document.querySelector('#button_program');
+const button_rotina  = document.querySelector('#button_rotina');
+const key = 'task'
+
 button_program_visible.addEventListener('click', function(){
     if(container_task.style.zIndex == 0){
         container_task.style.zIndex = `1`
@@ -21,3 +27,58 @@ button_rotina_visible.addEventListener('click', function(){
         container_task.style.zIndex = `0`
     }
 })
+
+button_program.addEventListener('click', function(){
+    let input = document.querySelector('#task');
+
+    if(!input.value){
+        alert('Digite uma Task e tente Novamente')
+    } else {
+        let armazenamento = JSON.parse(localStorage.getItem(key) || '[]')
+        armazenamento.push({
+            nome: input.value,
+            type: "programação"
+        })
+        localStorage.setItem(key, JSON.stringify(armazenamento))
+        mostrarTask()
+    }
+    input.value = ''
+})
+
+button_rotina.addEventListener('click', function(){
+    let input = document.querySelector('#task');
+
+    if(!input.value){
+        alert('Digite uma Task e tente Novamente')
+    } else {
+        let armazenamento = JSON.parse(localStorage.getItem(key) || '[]')
+        armazenamento.push({
+            nome: input.value,
+            type: "rotina"
+        })
+        localStorage.setItem(key, JSON.stringify(armazenamento))
+        mostrarTask()
+    }
+    input.value = ''
+})
+
+function mostrarTask(){
+    task.innerHTML = ''
+    task_2.innerHTML = ''
+    let armazenamento = JSON.parse(localStorage.getItem(key) || '[]')
+    for(let c = 0; c < armazenamento.length; c++){
+        let li = document.createElement('li');
+        li.classList.add('item_task');
+        if(armazenamento[c].type == 'programação'){
+            task.appendChild(li)
+            li.innerHTML = `${armazenamento[c]['nome']}`
+        } else if(armazenamento[c].type == 'rotina') {
+            task_2.appendChild(li)
+            li.innerHTML = `${armazenamento[c]['nome']}`
+        }
+    }
+    localStorage.setItem(key, JSON.stringify(armazenamento))
+}
+
+mostrarTask()
+
