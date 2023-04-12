@@ -13,8 +13,10 @@ const task    = document.querySelector('#list_task');
 const task_2  = document.querySelector('#list_task_2');
 const button_program = document.querySelector('#button_program');
 const button_rotina  = document.querySelector('#button_rotina');
+const remove_button  = document.querySelector('#button_remove')
 const key = 'task'
 
+// =====================================================================================
 button_program_visible.addEventListener('click', function(){
     if(container_task.style.zIndex == 0){
         container_task.style.zIndex = `1`
@@ -27,10 +29,10 @@ button_rotina_visible.addEventListener('click', function(){
         container_task.style.zIndex = `0`
     }
 })
+// =====================================================================================
 
 button_program.addEventListener('click', function(){
     let input = document.querySelector('#task');
-
     if(!input.value){
         alert('Digite uma Task e tente Novamente')
     } else {
@@ -44,7 +46,6 @@ button_program.addEventListener('click', function(){
     }
     input.value = ''
 })
-
 button_rotina.addEventListener('click', function(){
     let input = document.querySelector('#task');
 
@@ -61,7 +62,6 @@ button_rotina.addEventListener('click', function(){
     }
     input.value = ''
 })
-
 function mostrarTask(){
     task.innerHTML = ''
     task_2.innerHTML = ''
@@ -71,14 +71,33 @@ function mostrarTask(){
         li.classList.add('item_task');
         if(armazenamento[c].type == 'programação'){
             task.appendChild(li)
-            li.innerHTML = `${armazenamento[c]['nome']}`
+            li.innerHTML = `${armazenamento[c]['nome']}<button class="check"><img src="./assets/svg/check.svg></button>`
         } else if(armazenamento[c].type == 'rotina') {
             task_2.appendChild(li)
-            li.innerHTML = `${armazenamento[c]['nome']}`
+            li.innerHTML = `${armazenamento[c]['nome']}<button class="check"><img src="./assets/svg/check.svg></button>`
         }
     }
-    localStorage.setItem(key, JSON.stringify(armazenamento))
+    const button_task = document.querySelectorAll('.check');
+    button_task.forEach(function(button, index){
+        button.addEventListener('click', function(){
+            removeTask(armazenamento[index].nome)
+        })
+    })
 }
 
+remove_button.addEventListener('click', function(){
+    localStorage.removeItem(key)
+    mostrarTask()
+})
+
+function removeTask(itemStorage){
+    let armazenamento = JSON.parse(localStorage.getItem(key) || '[]')
+    let idx = armazenamento.findIndex(function(storage){
+        return storage.nome == itemStorage;
+    })
+    armazenamento.splice(idx, 1);
+    localStorage.setItem(key, JSON.stringify(armazenamento))
+    mostrarTask()
+}
 mostrarTask()
 
