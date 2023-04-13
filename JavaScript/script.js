@@ -35,7 +35,9 @@ button_program.addEventListener('click', function(){
     let input = document.querySelector('#task');
     if(!input.value){
         alert('Digite uma Task e tente Novamente')
-    } else {
+    } else if(validade()){
+        alert('Já existe uma task com este nome')
+    }else {
         let armazenamento = JSON.parse(localStorage.getItem(key) || '[]')
         armazenamento.push({
             nome: input.value,
@@ -74,13 +76,13 @@ function mostrarTask(){
             li.innerHTML = `${armazenamento[c]['nome']}<button class="check"><img src="./assets/svg/check.svg></button>`
         } else if(armazenamento[c].type == 'rotina') {
             task_2.appendChild(li)
-            li.innerHTML = `${armazenamento[c]['nome']}<button class="check"><img src="./assets/svg/check.svg></button>`
+            li.innerHTML = `${armazenamento[c]['nome']}<button class="check"><img src="./Assets/SVG/check.svg"></button>`
         }
     }
     const button_task = document.querySelectorAll('.check');
     button_task.forEach(function(button, index){
         button.addEventListener('click', function(){
-            removeTask(armazenamento[index].nome)
+            removeTask(armazenamento[index].nome, armazenamento[index].type)
         })
     })
 }
@@ -90,14 +92,23 @@ remove_button.addEventListener('click', function(){
     mostrarTask()
 })
 
-function removeTask(itemStorage){
+function removeTask(itemStorage, itemType){
     let armazenamento = JSON.parse(localStorage.getItem(key) || '[]')
     let idx = armazenamento.findIndex(function(storage){
-        return storage.nome == itemStorage;
+        return (storage.nome == itemStorage && storage.type == itemType);
     })
     armazenamento.splice(idx, 1);
     localStorage.setItem(key, JSON.stringify(armazenamento))
     mostrarTask()
+}
+
+function validade(){
+    let armazenamento = JSON.parse(localStorage.getItem(key) || '[]')
+    let input = document.querySelector('#task').value;
+    let validate = armazenamento.find(function(validação){
+        return validação.nome == input
+    })
+    return !validate ? false:true
 }
 mostrarTask()
 
